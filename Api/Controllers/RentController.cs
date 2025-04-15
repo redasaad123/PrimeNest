@@ -89,10 +89,12 @@ namespace ProjectApi.Controllers
                 ID = Guid.NewGuid().ToString(),
                 Date = DateTime.Now,
                 DateEnd = dto.DateEnd,
+                Type = "Rent",
                 OwnerId = user.Id,
                 Price = dto.Price,
                 PropertyID = dto.PropertyID,
                 TenantId = dto.TenantId,
+                //User = user,
             };
             await rentUnitOfWork.Entity.AddAsync(rent);
             await ChangeState(dto.PropertyID);

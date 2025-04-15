@@ -16,7 +16,7 @@ namespace ProjectApi.DTOS
         public string? MoreDescription { get; set; }
         public IFormFile? MainPhoto { get; set; }
         public List<IFormFile>? Photo { get; set; }
-        public string owner { get; set; }
+        public string? owner { get; set; }
 
     }
 }

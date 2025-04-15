@@ -35,6 +35,7 @@ namespace ProjectApi.Controllers
 
             var map = Property.SkipWhile(x => x.IsRequested == true).Select(x => new GetPropertyDTO
             {
+                Id = x.Id,
                 OwnerName = userManager.Users.Where(u => u.Id == x.user).Select(u => u.Name).FirstOrDefault() ?? x.user,
                 TypeContract = x.TypeContract,
                 Type = x.Type,
@@ -57,12 +58,12 @@ namespace ProjectApi.Controllers
         [HttpPost("Search")]
         public async Task< IActionResult> search([FromForm]PropertySearchDto dto)
         {
-            var result = service.SearchProperties(dto);
+            var result = await service.SearchProperties(dto);
             return Ok(result);
         }
 
         [HttpPost("AddProperty")]
-        public async Task<IActionResult> AddProperty(AddPropertyDTO dto)
+        public async Task<IActionResult> AddProperty(AddPropertyDTO dto )
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

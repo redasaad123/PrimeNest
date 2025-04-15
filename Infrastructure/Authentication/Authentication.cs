@@ -140,6 +140,24 @@ namespace Infrastructure.Authentication
             Authenticate.Name = user.Name;
 
 
+            if (user.RefreshTokens.Any(t => t.IsActive))
+            {
+                var activeRefreshTokens = user.RefreshTokens.FirstOrDefault(x => x.IsActive);
+                Authenticate.RefreshToken = activeRefreshTokens.Token;
+                Authenticate.RefreshTokenExpiration = activeRefreshTokens.ExpiresOn;
+            }
+            else
+            {
+                var refreshToken = GenerateRefreshToken();
+
+                Authenticate.RefreshToken = refreshToken.Token;
+                Authenticate.RefreshTokenExpiration = refreshToken.ExpiresOn;
+                user.RefreshTokens.Add(refreshToken);
+                await userManager.UpdateAsync(user);
+
+            }
+
+
             return Authenticate;
         }
         public async Task<AuthenticateDTO> RefreshTokenAsync(string token)
