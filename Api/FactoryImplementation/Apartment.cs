@@ -20,7 +20,6 @@ namespace ProjectApi.FactoryImplementation
         public async Task<IEnumerable<DetailsProperty>> GetDetails()
         {
             var details = await ApartmentUnitOfWork.Entity.GetAllAsync();
-
             return details;
            
         }
@@ -66,7 +65,7 @@ namespace ProjectApi.FactoryImplementation
 
             details.NumberStorey = dto.NumberStorey;
             details.NumberOfRooms = dto.NumberOfRooms;
-            details.NumberOfRooms = dto.NumberOfRooms;
+            details.NumberOfBathrooms = dto.NumberOfBathrooms;
 
             await ApartmentUnitOfWork.Entity.UpdateAsync(details);
             ApartmentUnitOfWork.Save();
@@ -87,10 +86,6 @@ namespace ProjectApi.FactoryImplementation
             return "The Details Is Deleted";
 
         }
-
-
-
-
 
 
     }

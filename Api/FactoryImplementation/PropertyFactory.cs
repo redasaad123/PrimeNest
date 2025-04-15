@@ -12,15 +12,19 @@ namespace ProjectApi.FactoryImplementation
             _serviceProvider = serviceProvider;
         }
 
-        public async Task< IDetailsProperty> DetailsProperty(string propertyType)
+        public async Task<IDetailsProperty> DetailsProperty(string propertyType)
         {
             return propertyType.ToLower() switch
             {
-                "apartment" => _serviceProvider.GetRequiredService<Villa>(),
+                "apartment" => _serviceProvider.GetRequiredService<Apartment>(),
                 "villa" => _serviceProvider.GetRequiredService<Villa>(),
                 "floor" => _serviceProvider.GetRequiredService<Floor>(),
                 _ => throw new ArgumentException("❌ نوع العقار غير معروف")
             };
+
+             
         }
+
+
     }
 }

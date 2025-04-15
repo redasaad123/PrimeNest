@@ -30,6 +30,7 @@ namespace ProjectApi.Controllers
         [HttpGet("GetDetailsPropertyID/{type}/{Id}")]
         public async Task< IActionResult> GetDetailsPropertyId(string type , string Id)
         {
+
             var details =await propertyFactory.DetailsProperty(type);
             var result = await details.GetDetailsById(Id);
             return Ok(details);
