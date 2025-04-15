@@ -34,6 +34,7 @@ namespace Core.Servises
         
         public async Task<string> CompressAndSaveImageAsync(IFormFile file , string directory , int width = 800, int quality = 50)
         {
+
             string uploads = Path.Combine(hosting.WebRootPath, $@"{directory}");
             string filePath = Path.Combine(uploads, file.FileName);
             using (var image = await Image.LoadAsync(file.OpenReadStream()))
@@ -69,17 +70,22 @@ namespace Core.Servises
                 }
             }
             property.user = dto.owner ?? user.Id;
-            property.TypeContract = dto.TypeContract;
-            property.Type = dto.Type;
-            property.Address = dto.Address;
-            property.Area = dto.Area;
+            property.TypeContract = dto.TypeContract ?? property.TypeContract;
+            property.Type = dto.Type ?? property.Type;
+            property.Address = dto.Address ?? property.Address;
+            property.Area = dto.Area ?? property.Area;
             property.date = DateTime.Now;
-            property.Description = dto.Description;
-            property.MainPhoto = await CompressAndSaveImageAsync(dto.MainPhoto, "Photos");
-            property.MoreDescription = dto.MoreDescription;
-            property.Price = dto.Price;
-            if (dto.TypeContract.ToLower().Contains("rent"))
-                property.State = false;
+            property.Description = dto.Description ?? property.Description;
+            if (dto.MainPhoto != null )
+            {
+                property.MainPhoto = await CompressAndSaveImageAsync(dto.MainPhoto, "Photos");
+            }
+            property.MoreDescription = dto.MoreDescription ?? property.MoreDescription;
+            property.Price = dto.Price ?? property.Price;
+
+            if(dto.TypeContract != null)
+                if (dto.TypeContract.ToLower().Contains("rent"))
+                     property.State = false;
 
 
             return property;

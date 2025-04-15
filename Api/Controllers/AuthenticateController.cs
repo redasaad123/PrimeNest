@@ -52,8 +52,8 @@ namespace ProjectAPI.Controllers
 
             if(!result.IsAuthenticated)
                 return BadRequest(result.Message);
-            if (!string.IsNullOrEmpty(result.RefreshToken))
-                setRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration);
+            //if (!string.IsNullOrEmpty(result.RefreshToken))
+            //    setRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration);
 
             return Ok(result);
 
@@ -71,7 +71,7 @@ namespace ProjectAPI.Controllers
             if (!result.IsAuthenticated)
                 return BadRequest(result.Message);
 
-                setRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration);
+            setRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration);
 
 
             return Ok(result);
@@ -130,7 +130,7 @@ namespace ProjectAPI.Controllers
             if(!result.IsAuthenticated)
                 return BadRequest(result);
 
-            setRefreshTokenInCookie(result.RefreshToken,result.RefreshTokenExpiration);
+            setRefreshTokenInCookie(result.RefreshToken, result.RefreshTokenExpiration);
 
             return Ok(result);
 

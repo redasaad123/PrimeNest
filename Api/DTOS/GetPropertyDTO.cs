@@ -5,6 +5,8 @@ namespace ProjectApi.NewFolder
 {
     public class GetPropertyDTO
     {
+
+        public string? Id { get; set; }
         public string? TypeContract { get; set; }
         public string? Type { get; set; }
         public string? Area { get; set; }

@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ProjectApi.Factory;
+using ProjectApi.FactoryImplementation;
 using System;
 using System.Text;
 
@@ -25,13 +27,17 @@ namespace ProjectApi
 
             builder.Services.AddDbContext<AppDBContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"),
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ProdcutionConnection"),
                     options => options.MigrationsAssembly(typeof(AppDBContext).Assembly.FullName));
             });
             builder.Services.Configure<JWTSettings>(builder.Configuration.GetSection("jwt"));
 
             builder.Services.AddTransient(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 
+            builder.Services.AddTransient(typeof(IPropertyFactory), typeof(PropertyFactory));
+            builder.Services.AddTransient<Floor>();
+            builder.Services.AddTransient<Apartment>();
+            builder.Services.AddTransient<Villa>();
 
 
             builder.Services.AddIdentity<AppUser, IdentityRole>().
