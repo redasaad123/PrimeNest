@@ -33,7 +33,7 @@ namespace ProjectApi.Controllers
 
             var details =await propertyFactory.DetailsProperty(type);
             var result = await details.GetDetailsById(Id);
-            return Ok(details);
+            return Ok(result);
 
         }
 
