@@ -91,7 +91,6 @@ namespace Core.Servises
             return property;
 
         }
-
         public async Task<List<Property>> SearchProperties(PropertySearchDto filter)
         {
             var price = new PriceFilter();
