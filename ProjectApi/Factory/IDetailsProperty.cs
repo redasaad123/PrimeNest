@@ -8,7 +8,7 @@ namespace ProjectApi.Factory
     public interface IDetailsProperty
     {
         Task<IEnumerable<DetailsProperty>> GetDetails();
-        Task<DetailsProperty> GetDetailsById(string Id);
+      Task<  DetailsProperty> GetDetailsById(string Id);
 
         Task<DetailsProperty> AddDetails(DetailsPropertyDTO dto);
 

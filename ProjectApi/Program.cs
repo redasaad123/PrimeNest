@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using ProjectApi.Servises;
 
 namespace ProjectApi
 {
@@ -38,6 +39,7 @@ namespace ProjectApi
             builder.Services.AddTransient<Floor>();
             builder.Services.AddTransient<Apartment>();
             builder.Services.AddTransient<Villa>();
+           
 
 
             builder.Services.AddIdentity<AppUser, IdentityRole>().
@@ -45,7 +47,9 @@ namespace ProjectApi
 
 
             builder.Services.AddScoped<PasswordHasher<AppUser>>();
-            builder.Services.AddTransient<Service>();
+            builder.Services.AddTransient<ImageService>();
+            builder.Services.AddTransient<PropertyServices>();
+            builder.Services.AddTransient<SearchService>();
 
             builder.Services.AddTransient<IAuthentication, Authentication>();
             builder.Services.AddAuthentication(options =>

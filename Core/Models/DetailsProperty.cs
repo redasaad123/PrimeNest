@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
+    //dublicate code 
     public abstract class DetailsProperty
     {
         [Key]

@@ -23,7 +23,7 @@ namespace ProjectApi.FactoryImplementation
             return details;
             
         }
-        public async Task<DetailsProperty> GetDetailsById(string Id)
+        public async Task< DetailsProperty> GetDetailsById(string Id)
         {
             var detail = VillaUnitOfWork.Entity.Find(x=>x.PropertyId == Id);
 

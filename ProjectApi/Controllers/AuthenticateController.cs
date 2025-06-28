@@ -29,7 +29,7 @@ namespace ProjectAPI.Controllers
         private readonly JWTSettings jwtSettings;
         
 
-        public AuthenticateController(PasswordHasher<AppUser> passwordHasher,IOptions<JWTSettings> options, RoleManager<IdentityRole> roleManager, UserManager<AppUser> userManager
+        public AuthenticateController(UserManager<AppUser> userManager,PasswordHasher<AppUser> passwordHasher,IOptions<JWTSettings> options, RoleManager<IdentityRole> roleManager
             , IUnitOfWork<AppUser> appUserUnitOfWork,  IAuthentication authentication )
         {
             this.passwordHasher = passwordHasher;

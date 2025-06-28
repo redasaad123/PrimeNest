@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Core.Models
 {
+    //dublicate code 
     public class DetailsFloor : DetailsProperty
     {
         public string? TypeFloor {  get; set; }  
